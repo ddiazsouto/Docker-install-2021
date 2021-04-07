@@ -9,6 +9,8 @@
     - curl
     - gnupg
     - lsb-release
+    - python3
+    - python3-pip
     state: latest
     update_cache: true
 - name: add GPG key
@@ -23,5 +25,10 @@
   apt:
     pkg:
     - docker-ce
+    - docker-ce-cli
+    - containerd.io
     state: latest
     update_cache: true
+- name: Install Docker SDK
+  pip:
+    name: docker-py
