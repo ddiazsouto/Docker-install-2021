@@ -1,0 +1,27 @@
+---
+# tasks file for docker
+
+- name: 'download and install docker using apt'
+  apt:
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+    state: latest
+    update_cache: true
+- name: add GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+- name: get Docky stuff
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+- name: Update apt and install docker-ce
+  apt:
+    pkg:
+    - docker-ce
+    state: latest
+    update_cache: true
